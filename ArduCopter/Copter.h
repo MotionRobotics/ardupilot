@@ -215,6 +215,7 @@ public:
     friend class ModeGuided;
     friend class ModeLand;
     friend class ModeLoiter;
+    friend class ModeSurfaceLand;
     friend class ModePosHold;
     friend class ModeRTL;
     friend class ModeSmartRTL;
@@ -941,6 +942,7 @@ private:
 #endif
 #endif
     ModeAltHold mode_althold;
+    ModeSurfaceLand mode_surfaceLand;
 #if MODE_AUTO_ENABLED == ENABLED
     ModeAuto mode_auto;
 #endif
