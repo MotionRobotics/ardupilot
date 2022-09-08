@@ -1,4 +1,4 @@
-#VRML_SIM R2021b utf8
+#VRML_SIM R2022a utf8
 WorldInfo {
   title "ArduPilot Webots Simulator"
   gravity 9.80665
@@ -10,21 +10,24 @@ WorldInfo {
   randomSeed 52
 }
 Viewpoint {
-  orientation -0.8111585917362343 -0.5680085466888879 -0.13924090613345938 0.5869628064711815
-  position -3.6530619136063534 7.264658421908483 10.832677706150493
+  orientation -0.945199502629771 0.29446027847235756 0.14103561475887913 1.6363003126198672
+  position -5.701007941099126 1.168175123042618 -1.3934935092342673
   follow "quad_plus_sitl"
   followType "Mounted Shot"
 }
 DogHouse {
   translation 34.82 0.76 -24.56
+  rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0943951023931953
   name "dog house(1)"
 }
 DogHouse {
   translation 161.819 0.75 -152.174
+  rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0943951023931953
   name "dog house(2)"
 }
 DogHouse {
   translation 185.42 0.77 48.97
+  rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0943951023931953
   name "dog house(5)"
 }
 Background {
@@ -36,6 +39,7 @@ Solid {
   translation 36.93 0.77 -37.93
   children [
     HouseWithGarage {
+      rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0943951023931953
     }
   ]
 }
@@ -44,15 +48,46 @@ Solid {
   rotation 0 1 0 -1.5707963071795863
   children [
     HouseWithGarage {
+      rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0943951023931953
     }
   ]
   name "solid(1)"
 }
 DEF DEF_VEHICLE Robot {
-  translation -0.027601000000000007 0.6742873870366666 0.005030999999999996
-  rotation 0.9925492643529304 -0.0818450865332256 -0.09026261486809202 1.0340410161155028e-17
+  translation 1.7304000000067634 0.04998845908057899 -3.1561799981913867
+  rotation -3.449604059435809e-06 0.9999999999891046 -3.145071796779709e-06 1.6414362254156658
   children [
+    DistanceSensor {
+      translation 0.36 0.5 -5.30992e-08
+      rotation 9.589734506671008e-09 -0.9999934699443532 0.0036138716983296877 -5.307179586466759e-06
+      lookupTable [
+        0 0 0
+        5 5 0
+      ]
+      type "laser"
+      aperture 0.15708
+    }
+    Ball {
+      translation 0.35 0.45 0.3
+      mass 0.001
+    }
+    Ball {
+      translation 0.45 0.05 0.3
+      name "ball(1)"
+      mass 0.001
+    }
+    Ball {
+      translation 0.35 0.45 -0.3
+      name "ball(2)"
+      mass 0.001
+    }
+    Ball {
+      translation 0.45 0.05 -0.3
+      name "ball(3)"
+      mass 0.001
+    }
     Emitter {
+      rotation -0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.0943951023931953
       name "emitter_plugin"
       description "commuicates with physics plugin"
     }
@@ -67,7 +102,7 @@ DEF DEF_VEHICLE Robot {
     }
     Camera {
       translation 0 0.12 0
-      rotation 0.12942795977353752 0.9831056944488316 0.12942795977353752 -1.5878343071795866
+      rotation -0.9831056917728173 0.12942789006349492 -0.12942804980993317 1.5878341474331545
       name "camera1"
       width 128
       height 128
@@ -105,6 +140,7 @@ DEF DEF_VEHICLE Robot {
                 maxVelocity 5000
               }
               fastHelix Solid {
+                rotation -1 0 0 1.5707963267948966
                 children [
                   Shape {
                     appearance Appearance {
@@ -120,7 +156,7 @@ DEF DEF_VEHICLE Robot {
                 ]
               }
               slowHelix Solid {
-                rotation 0 1 0 1.1667874781290464
+                rotation 0.4082496951341617 0.6454967801712354 0.6454967801712351 3.9167884349051976
                 children [
                   Shape {
                     appearance Appearance {
@@ -139,6 +175,13 @@ DEF DEF_VEHICLE Robot {
           ]
           physics Physics {
             mass 0.05
+            centerOfMass [
+              0 0 0
+            ]
+            inertiaMatrix [
+              1 1 1
+              1 1 1
+            ]
           }
         }
         Shape {
@@ -170,6 +213,7 @@ DEF DEF_VEHICLE Robot {
                 maxVelocity 5000
               }
               fastHelix Solid {
+                rotation -1 0 0 1.5707963267948966
                 children [
                   Shape {
                     appearance Appearance {
@@ -185,7 +229,7 @@ DEF DEF_VEHICLE Robot {
                 ]
               }
               slowHelix Solid {
-                rotation 0 1 0 1.1667874781290464
+                rotation -0.8224250152584817 -0.4022543314105429 -0.402254331410543 1.7650607580378108
                 children [
                   Shape {
                     appearance Appearance {
@@ -233,6 +277,7 @@ DEF DEF_VEHICLE Robot {
                 maxVelocity 5000
               }
               fastHelix Solid {
+                rotation -1 0 0 1.5707963267948966
                 children [
                   Shape {
                     appearance Appearance {
@@ -248,7 +293,7 @@ DEF DEF_VEHICLE Robot {
                 ]
               }
               slowHelix Solid {
-                rotation 0 1 0 1.1667874781290464
+                rotation 0.24135258190783243 0.6862029332516812 0.6862029332516815 3.6152396614329603
                 children [
                   Shape {
                     appearance Appearance {
@@ -297,6 +342,7 @@ DEF DEF_VEHICLE Robot {
                 maxVelocity 5000
               }
               fastHelix Solid {
+                rotation -1 0 0 1.5707963267948966
                 children [
                   Shape {
                     appearance Appearance {
@@ -312,7 +358,7 @@ DEF DEF_VEHICLE Robot {
                 ]
               }
               slowHelix Solid {
-                rotation 0 1 0 1.1667874781290464
+                rotation -0.819079423042242 -0.4056531145873206 -0.40565311458732073 1.7690587563377145
                 children [
                   Shape {
                     appearance Appearance {
@@ -365,28 +411,34 @@ DEF DEF_VEHICLE Robot {
     "0.01"
   ]
   customData "1"
+  linearVelocity -7.484302313715149e-16 -2.5455043832925023e-15 3.0095140262659284e-11
+  angularVelocity -2.1029292651514567e-18 5.665366293362571e-13 -5.501351798705975e-17
 }
 DirectionalLight {
   direction 0 -1 0
 }
-UnevenTerrain {
-  size 500 1 500
-}
 HouseWithGarage {
   translation 174.25 1.88 -157.5
-  rotation 0 1 0 -1.5707963071795863
+  rotation -0.9999999999999999 9.807655101860442e-09 9.807655163092781e-09 1.5707963267948968
 }
-AdvertisingBoard {
+DEF scale AdvertisingBoard {
   translation 0 2.35 -5.71
+  rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0943951023931953
   frontTexture [
     "https://ardupilot.org/application/files/6315/7552/1962/ArduPilot-Motto.png"
   ]
 }
 AdvertisingBoard {
   translation 84.03999999999999 2.35 -5.81
-  rotation 0 1 0 -1.5707963071795863
+  rotation -0.9999999999999999 9.807655101860442e-09 9.807655163092781e-09 1.5707963267948968
   name "advertising board(1)"
   frontTexture [
     "https://ardupilot.org/application/files/6315/7552/1962/ArduPilot-Motto.png"
   ]
+}
+RectangleArena {
+  translation 0 0 8.76573e-07
+  rotation 1 0 0 -1.5707953071795862
+  floorSize 10 10
+  wallHeight 1
 }

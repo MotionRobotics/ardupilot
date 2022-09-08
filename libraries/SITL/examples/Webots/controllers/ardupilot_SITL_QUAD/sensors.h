@@ -9,6 +9,7 @@
 #include <webots/gyro.h>
 #include <webots/motor.h>
 #include <webots/camera.h>
+#include <webots/distance_sensor.h>
 
 
 WbNodeRef self_node;
@@ -21,4 +22,5 @@ void getCompass (const WbDeviceTag compass, char *buf);
 void getAcc (const WbDeviceTag accelerometer, char *buf);
 void getGyro (const WbDeviceTag gyro, char *buf);
 void getGPS (const WbDeviceTag gps, char *buf);
-void getAllSensors (char *buf, WbDeviceTag gyro, WbDeviceTag accelerometer, WbDeviceTag compass, const WbDeviceTag gps, const WbDeviceTag inertial_unit);
+void getDistance (const WbDeviceTag distanceSensor, char *buf);
+void getAllSensors (char *buf, WbDeviceTag gyro, WbDeviceTag accelerometer, WbDeviceTag compass, const WbDeviceTag gps, const WbDeviceTag inertial_unit, WbDeviceTag distanceSensor);
