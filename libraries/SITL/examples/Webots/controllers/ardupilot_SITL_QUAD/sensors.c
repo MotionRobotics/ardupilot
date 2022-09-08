@@ -113,6 +113,15 @@ void getGyro (const WbDeviceTag gyro, char *buf)
     return ;
 }
 
+void getDistance (const WbDeviceTag distanceSensor, char *buf)
+{
+    const double d = wb_distance_sensor_get_value(distanceSensor);
+    
+    sprintf(buf,"%f",d);
+    //printf("distance_sensor:[%f]",d);
+    return ;
+}
+
 
 void getLinearVelocity (WbNodeRef nodeRef,  char * buf)
 {
@@ -125,7 +134,7 @@ void getLinearVelocity (WbNodeRef nodeRef,  char * buf)
     return ;
 }
 
-void getAllSensors (char *buf, WbDeviceTag gyro, WbDeviceTag accelerometer, WbDeviceTag compass, const WbDeviceTag gps, const WbDeviceTag inertial_unit)
+void getAllSensors (char *buf, WbDeviceTag gyro, WbDeviceTag accelerometer, WbDeviceTag compass, const WbDeviceTag gps, const WbDeviceTag inertial_unit, WbDeviceTag distanceSensor)
 {
 
 /*
@@ -153,6 +162,7 @@ void getAllSensors (char *buf, WbDeviceTag gyro, WbDeviceTag accelerometer, WbDe
         static char gps_buf [150];
         static char inertial_buf [150];
         static char linear_velocity_buf [150];
+        static char distance_sensor_buf [150];
 
         char szTime[21];
         double time = wb_robot_get_time(); // current simulation time in [s]
@@ -164,8 +174,12 @@ void getAllSensors (char *buf, WbDeviceTag gyro, WbDeviceTag accelerometer, WbDe
         getGPS(gps, gps_buf);
         getInertia (inertial_unit, inertial_buf);
         getLinearVelocity(self_node, linear_velocity_buf);
+        getDistance(distanceSensor,distance_sensor_buf);
 
-        sprintf (buf,"{\"ts\": %s,\"vehicle.imu\": {\"av\": %s,\"la\": %s,\"mf\": %s,\"vehicle.gps\":{%s},\"vehicle.velocity\":{\"wlv\": %s},\"vehicle.pose\":{%s,%s}}\r\n"
-                      , szTime,                     gyro_buf,    acc_buf,   compass_buf,               gps_buf,                                  linear_velocity_buf,               gps_buf, inertial_buf );
+        sprintf (buf,"{\"ts\": %s,\"vehicle.imu\": {\"av\": %s,\"la\": %s,\"mf\": %s},\"vehicle.gps\":{%s},\"vehicle.velocity\":{\"wlv\": %s},\"vehicle.pose\":{%s,%s},\"distance_sensor\": %s}\r\n"
+                      , szTime,                     gyro_buf,    acc_buf,   compass_buf,               gps_buf,                                  linear_velocity_buf,               gps_buf, inertial_buf,distance_sensor_buf);
 
+      // printf (buf,"{\"ts\": %s,\"vehicle.imu\": {\"av\": %s,\"la\": %s,\"mf\": %s,\"vehicle.gps\":{%s},\"vehicle.velocity\":{\"wlv\": %s},\"vehicle.pose\":{%s,%s}},\"vehicle.distance_sensor\":{%s}}\r\n"
+                    //  , szTime,                     gyro_buf,    acc_buf,   compass_buf,               gps_buf,                                  linear_velocity_buf,               gps_buf, inertial_buf );
+        //printf("%s",buf);
 }

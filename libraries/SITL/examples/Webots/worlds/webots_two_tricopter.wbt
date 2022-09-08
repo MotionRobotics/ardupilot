@@ -2,7 +2,7 @@
 WorldInfo {
   gravity 9.80665
   physics "sitl_physics_env"
-  basicTimeStep 1
+  basicTimeStep 10
   FPS 25
   optimalThreadCount 4
   coordinateSystem "NUE"

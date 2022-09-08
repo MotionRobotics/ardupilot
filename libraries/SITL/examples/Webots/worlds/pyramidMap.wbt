@@ -7,8 +7,8 @@ WorldInfo {
   gravity 9.80665
   physics "sitl_physics_env"
   basicTimeStep 1
-  FPS 5
-  optimalThreadCount 4
+  FPS 60
+  optimalThreadCount 12
   physicsDisableTime 0
   coordinateSystem "NUE"
   randomSeed 52

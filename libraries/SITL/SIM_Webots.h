@@ -10,7 +10,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   along with this program.  If n#include "RangeGlue.h"ot, see <http://www.gnu.org/licenses/>.
  */
 /*
   simulator connection for webots simulator https://github.com/omichel/webots
@@ -20,8 +20,9 @@
 
 #include <AP_HAL/AP_HAL_Boards.h>
 
+
 #ifndef HAL_SIM_WEBOTS_ENABLED
-#define HAL_SIM_WEBOTS_ENABLED (CONFIG_HAL_BOARD == HAL_BOARD_SITL)
+#define HAL_SIM_WEBOTS_ENABLED 1 //(CONFIG_HAL_BOARD == HAL_BOARD_SITL)
 #endif
 
 #if HAL_SIM_WEBOTS_ENABLED
@@ -117,6 +118,7 @@ private:
             struct vector3f_array points;
             struct float_array ranges;
         } scanner;
+        double distance;
     } state, last_state;
 
     // table to aid parsing of JSON sensor data
@@ -125,7 +127,7 @@ private:
         const char *key;
         void *ptr;
         enum data_type type;
-    } keytable[13] = {
+    } keytable[14] = {
         { "", "ts", &state.timestamp, DATA_DOUBLE },
         { ".imu", "av",    &state.imu.angular_velocity, DATA_VECTOR3F },
         { ".imu", "la", &state.imu.linear_acceleration, DATA_VECTOR3F },
@@ -137,6 +139,7 @@ private:
         { ".pose", "pitch", &state.pose.pitch, DATA_FLOAT },
         { ".pose", "yaw",   &state.pose.yaw, DATA_FLOAT },
         { ".velocity", "wlv", &state.velocity.world_linear_velocity, DATA_VECTOR3F },
+        { "", "distance_sensor", &state.distance, DATA_DOUBLE },
         { ".scan", "pl", &state.scanner.points, DATA_VECTOR3F_ARRAY },
         { ".scan", "rl", &state.scanner.ranges, DATA_FLOAT_ARRAY },
     };

@@ -203,6 +203,7 @@ public:
     friend class ModeAcro;
     friend class ModeAcro_Heli;
     friend class ModeAltHold;
+    friend class ModeSurfaceLand;
     friend class ModeAuto;
     friend class ModeAutoTune;
     friend class ModeAvoidADSB;
@@ -941,6 +942,7 @@ private:
 #endif
 #endif
     ModeAltHold mode_althold;
+    ModeSurfaceLand mode_surfaceLand;
 #if MODE_AUTO_ENABLED == ENABLED
     ModeAuto mode_auto;
 #endif

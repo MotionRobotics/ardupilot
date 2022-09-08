@@ -37,6 +37,7 @@
     #include <SFML/Window/Joystick.h>
   #endif
 #endif // SFML_JOYSTICK
+extern float Range_Glue;
 
 extern const AP_HAL::HAL& hal;
 
@@ -662,7 +663,7 @@ Vector3f SIM::convert_earth_frame(const Matrix3f &dcm, const Vector3f &gyro)
 // get the rangefinder reading for the desired rotation, returns -1 for no data
 float SIM::get_rangefinder(uint8_t instance) {
     if (instance < RANGEFINDER_MAX_INSTANCES) {
-        return state.rangefinder_m[instance];
+        return Range_Glue;
     }
     return -1;
 };

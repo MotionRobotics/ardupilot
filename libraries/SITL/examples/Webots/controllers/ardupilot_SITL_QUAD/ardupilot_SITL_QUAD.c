@@ -43,6 +43,7 @@
 
 
 
+
 #define MOTOR_NUM 4
 
 static WbDeviceTag motors[MOTOR_NUM];
@@ -54,7 +55,8 @@ static WbDeviceTag gps;
 static WbDeviceTag camera;
 static WbDeviceTag inertialUnit;
 static WbDeviceTag emitter;
-
+static WbDeviceTag emitter;
+static WbDeviceTag distanceSensor;
 
 static double _linear_velocity[3] = {0.0,0.0,0.0};
 static double v[MOTOR_NUM];
@@ -257,9 +259,9 @@ void run ()
          
         
         // trigget ArduPilot to send motor data 
-        getAllSensors ((char *)send_buf, gyro,accelerometer,compass,gps, inertialUnit);
+        getAllSensors ((char *)send_buf, gyro,accelerometer,compass,gps, inertialUnit,distanceSensor);
 
-        #ifdef DEBUG_SENSORS
+        #if 0
         //printf("at %lf  %s\n",wb_robot_get_time(), send_buf);
         printf("at %lf  %s\n",wb_robot_get_time(), send_buf);
         if (strlen (pBug)> 5)
@@ -377,6 +379,9 @@ bool initialize (int argc, char *argv[])
   // gyro
   gyro = wb_robot_get_device("gyro1");
   wb_gyro_enable(gyro, timestep);
+
+    distanceSensor = wb_robot_get_device("distance sensor");
+  wb_distance_sensor_enable(distanceSensor, timestep);
 
   // accelerometer
   accelerometer = wb_robot_get_device("accelerometer1");
