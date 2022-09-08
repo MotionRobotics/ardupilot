@@ -18,6 +18,7 @@
 
 #include "SIM_Webots.h"
 
+
 #if HAL_SIM_WEBOTS_ENABLED
 
 #include <arpa/inet.h>
@@ -32,6 +33,7 @@
 #include <AP_Logger/AP_Logger.h>
 #include "pthread.h"
 #include <AP_HAL/utility/replace.h>
+#include "RangeGlue.h"
 
 extern const AP_HAL::HAL& hal;
 
@@ -496,6 +498,8 @@ void Webots::update(const struct sitl_input &input)
         scanner.points = state.scanner.points;
         scanner.ranges = state.scanner.ranges;
 
+        //printf("%f\r\n",state.distance);
+        Range_Glue = state.distance;
         update_position();
         
         // update magnetic field
